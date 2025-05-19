@@ -121,3 +121,30 @@ router.delete("/:username", ensureAdmin, async function (req, res, next) {
 });
 
 module.exports = router;
+
+// PUT /api/users/:username/team — assign or clear a team (admin only)
+router.put(
+  '/:username/team',
+  authenticateJWT,
+  authorizeAdmin,
+  async (req, res) => {
+    const { username } = req.params;
+    const { team_id } = req.body; // may be null to clear team
+    try {
+      const { rows } = await pool.query(
+        `UPDATE users
+         SET team_id = $1
+         WHERE username = $2
+         RETURNING username, name, email, team_id`,
+        [team_id, username]
+      );
+      if (rows.length === 0) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      res.json(rows[0]);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Unable to update user team' });
+    }
+  }
+);
