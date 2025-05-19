@@ -79,3 +79,8 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+// server/app.js (or index.js)
+const teamsRouter = require('./routes/teams');
+// ...
+app.use('/api/teams', teamsRouter);
