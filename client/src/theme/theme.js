@@ -1,56 +1,15 @@
-import { createTheme, responsiveFontSizes } from "@mui/material";
+// src/theme.js
+import { createTheme } from '@mui/material/styles';
 
-let theme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: "#1976d2",
+      main: '#388e3c',    // deep golf-green
     },
     secondary: {
-      main: "#eeeeee",
-    },
-    dark: {
-      main: "#212529",
-    },
-  },
-  typography: {
-    h1: {
-      fontFamily: "Cubano",
-    },
-    h2: {
-      fontFamily: "Cubano",
-    },
-    h3: {
-      fontFamily: "Cubano",
-    },
-    h4: {
-      fontFamily: "Cubano",
-    },
-    h5: {
-      fontFamily: "Cubano",
-    },
-    h6: {
-      fontFamily: "Cubano",
-    },
-    p: {
-      fontFamily: "Didact Gothic",
-      fontSize: "1.25rem",
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          fontFamily: "Cubano",
-          fontSize: "1.25rem",
-          "&:hover": {
-            color: "white",
-          },
-        },
-      },
+      main: '#fbc02d',    // sand/gold accent
     },
   },
 });
-
-theme = responsiveFontSizes(theme);
 
 export default theme;
